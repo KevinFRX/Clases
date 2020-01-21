@@ -1,0 +1,40 @@
+<div fxLayout="column">
+  <div class="problem-box">
+    <h2> Problema </h2>
+    <p class="problem"> {{problem}} </p>
+  </div>
+  <mat-divider></mat-divider>
+  <div  class="solution-box" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column" fxFlex>  
+      <form [formGroup]="dataForm">
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+          <mat-form-field fxFlex>
+              <input  type="number" min="1" matInput formControlName="n" placeholder="Número *">
+              <mat-error>
+                  <span>Número inválido.</span>
+              </mat-error>
+          </mat-form-field>
+          <mat-divider></mat-divider>
+          <button mat-raised-button (click)="compute()" matTooltip="¿Cantidad de divisores?" fxLayout="row">
+            <mat-icon>play_arrow</mat-icon>      
+            Calcular
+          </button>
+        </div>
+      </form>      
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex> 
+      <mat-spinner *ngIf="isComputing" [diameter]="40"></mat-spinner>
+      <h3 *ngIf="!isComputing"> {{result}} </h3>
+    </div>
+  </div>
+  <div fxLayout="column" class="test-box" fxFlex> 
+    <button  mat-raised-button (click)="test()">
+      <mat-icon>play_arrow</mat-icon>
+      Evaluar!!
+    </button>
+    <mat-progress-bar  *ngIf="isTesting" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="!isTesting && showTestResults" fxLayout="column">
+        <app-show-test [test]="t" *ngFor="let t of testList"> </app-show-test>
+    </div>
+  </div>
+</div>

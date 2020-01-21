@@ -1,0 +1,5 @@
+<div  class="show-test-box" fxLayout="row" fxLayoutAlign="space-between">
+  <span matTooltip="{{test.value}}"> {{test.name}}</span>
+  <mat-icon *ngIf="test.result" class="right-result">done</mat-icon>
+  <mat-icon *ngIf="!test.result"  class="wrong-result">clear</mat-icon>
+</div>
